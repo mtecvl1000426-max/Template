@@ -1,0 +1,171 @@
+\documentclass[10pt,journal,english,twocolumn]{IEEEtran} % journal two column
+%\documentclass[10pt,conference,english,twocolumn]{IEEEtran} % conference two column
+
+%% Language and Typesetting
+\usepackage{babel}
+\setlocalecaption{english}{table}{TABLE}
+\usepackage[babel]{microtype}
+\usepackage{csquotes}
+
+%% Fonts
+\usepackage[T1]{fontenc}
+\usepackage[largesc]{newtxtext}
+\usepackage{newtxtt} % matching monospaced font
+
+%% Graphics
+\usepackage[svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+%% Tables
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+%% Math
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage{dsfont}
+
+%% Misc
+\usepackage[math]{blindtext}
+
+%% Bibliography
+\usepackage[backend=biber,url=false,style=ieee,bibstyle=ieee-proc,dashed=false,isbn=false,doi=true]{biblatex}
+\addbibresource{literature.bib}
+\renewcommand*{\bibfont}{\small}
+
+%% Hyperref
+\usepackage{hyperref}
+\hypersetup{
+	pdfauthor={{{author}}},
+	pdftitle={{{title}}},
+	pdflang={en-US},
+	bookmarksnumbered=true,
+	colorlinks=true,
+	allcolors=.,
+	urlcolor=MidnightBlue,
+}
+
+%% Glossary/Acronyms
+\usepackage[acronyms,nomain,xindy,nowarn]{glossaries}
+\makeglossaries
+\loadglsentries{setup-acronyms.tex}
+\setacronymstyle{long-short}
+\glsdisablehyper
+
+%% SETUPS
+\input{setup-colors.tex}
+\input{setup-math.tex}
+\input{setup-plots.tex}
+\input{setup-misc.tex}
+
+
+
+
+%opening
+\title{{{title}}}
+\author{{{author}}
+%	\thanks{Parts of this work have been presented at the ...~\cite{...}.}
+	\thanks{{{affiliation}}}
+	\thanks{{{funding}}}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}\noindent\boldmath
+	\todo{Four sentences:}
+	\color{blue}
+
+	1) State the problem.
+
+	2) Say why it is an interesting problem.
+
+	3) Say what your solution achieves.
+
+	4) Say what follows from your solution.
+\end{abstract}
+\begin{IEEEkeywords}
+	\todo{Keyword 1, Keyword 2, Keyword 3}.
+\end{IEEEkeywords}
+\glsresetall
+
+\section{Introduction}\label{sec:introduction}
+\todo{Add text...}
+
+\section{System Model and Problem Formulation}\label{sec:system-model}
+
+
+\todo{Add text... \cite{Tse2005}}
+\begin{thm}[Name of the Theorem]
+	\label{thm:important-theorem}
+	This is an important theorem.
+\end{thm}
+\begin{proof}
+	This is obvious.
+\end{proof}
+
+You can use the \verb*|\autoref{label}| command to refer to environments and sections like \autoref{thm:important-theorem}.
+This automatically adds the name of the environment.
+
+\blinddocument
+
+\section{Plots}
+You can find an example plot in \autoref{fig:example} which uses the \texttt{betterplot} style, which is defined in this template.
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			betterplot,
+			xlabel={Label $x$ Axis},
+			ylabel={Label $y$ Axis},
+			xmin=-5,
+			xmax=5,
+			]
+			\addplot+{sin(deg(x))};
+			\addlegendentry{$\sin(x)$}
+			\addplot+[samples=101]{sin(2*deg(x))};
+			\addlegendentry{$\sin(2x)$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Example plot using the custom \texttt{betterplot} style}
+	\label{fig:example}
+\end{figure}
+
+
+\section{Tables}
+You should use the \texttt{booktabs} package to produce nice looking tables.
+An example can be found in \autoref{tab:example-table}.
+
+\begin{table}
+	\centering
+	\caption{Captions go above tables}
+	\label{tab:example-table}
+	\begin{tabularx}{.97\linewidth}{XX}
+		\toprule
+		\textbf{Column~1} & \textbf{Column~2}\\
+		\midrule
+		First row, first column & First row, second column\\
+		Second row, first column & Second row, second column\\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section{Formulas}
+You can use the pre-defined macros to typeset constants, such as~$\e$, and operators, such as the differential~$\diff$, in the roman shape.
+\begin{align*}
+	H &= 0.5 \log(2\pi\e)\\
+	f(x) &= \int_{x}^{\infty} d(y)\e^{-\imag y} \diff{y}
+\end{align*}
+
+
+\section{Conclusion}\label{sec:conclusion}
+\todo{Add text...}
+
+\printbibliography[heading=bibintoc]
+\end{document}
